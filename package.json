@@ -1,0 +1,46 @@
+{
+  "private": true,
+  "name": "movies",
+  "version": "1.0.0",
+  "author": "Lokesh Bajracharya",
+  "license": "ISC",
+  "scripts": {
+    "check-types": "tsc",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --progress",
+    "build": "cross-env NODE_ENV=production webpack --color --progress",
+    "start": "serve dist"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
+    "@types/axios": "^0.14.0",
+    "@types/react-helmet": "^6.1.2",
+    "@types/react-router-dom": "^5.1.8",
+    "css-loader": "^2.1.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.1",
+    "regenerator-runtime": "^0.13.9",
+    "style-loader": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.7",
+    "@types/node": "^12.12.5",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "react-helmet": "^6.1.0",
+    "serve": "^11.3.0",
+    "terser-webpack-plugin": "^2.3.2",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
