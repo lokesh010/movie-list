@@ -16,10 +16,7 @@ export default function App() {
     <>
       <Router>
         <Switch>
-          {/* {routes.map((route: RouteTypes) => <Route exact path={route.path} component={route.page} key={route.path} />)} */}
-          <Route exact path={'/'} component={Home} />
-          <Route path={'/favourite'} component={Favourite} />
-          <Route path="/*" component={Error404} />
+          {routes.map((route: RouteTypes) => <Route exact path={route.path} component={route.page} key={route.path} />)}
         </Switch>
       </Router>
     </>

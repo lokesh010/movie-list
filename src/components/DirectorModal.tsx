@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Empty, message, Modal, Skeleton } from 'antd'
+import { Empty, message, Modal, Skeleton } from 'antd'
 import { fetchUserIDReq } from 'api/directors';
 import Gravatar from 'react-gravatar';
 
@@ -34,7 +34,7 @@ function ModalComp({ directorID, isVisible, okHandler, closeHandler }: PropTypes
                 setLoading(false);
             })
             .catch(err => {
-                message.error(err?.response?.message || "Couldnot get director");
+                message.error(err?.response?.message || "Could not get director");
                 setLoading(false);
             })
     }
