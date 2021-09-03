@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import favouriteSlice from 'redux/favourite'
 
 const store = configureStore({
     reducer: {
-        // one: oneSlice.reducer,
-        // two: twoSlice.reducer,
+        favouriteSlice,
     },
 })
 export type RootState = ReturnType<typeof store.getState>

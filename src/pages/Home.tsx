@@ -1,13 +1,16 @@
 import React from 'react'
 import MainLayout from 'layouts/main'
 import HomeContainer from 'containers/Home'
-import 'assets/css/style.css';
+import { Helmet } from "react-helmet";
 
 function HomePage() {
     return (
-        <MainLayout title="Home">
-            <HomeContainer />
-        </MainLayout>
+        <>
+            <Helmet title={`React | Home`} />
+            <MainLayout>
+                <HomeContainer />
+            </MainLayout>
+        </>
     )
 }
 

@@ -19,3 +19,9 @@
 .fa-star, .fa-circle-notch{
     color: orange;
 }
+
+.img-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

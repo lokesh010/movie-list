@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { textOverflow } from 'helpers';
+import { Card } from 'antd';
+import Modal from 'components/DirectorModal'
 
+const baseImgUrl = "https://image.tmdb.org/t/p/w500/";
 interface MovieProps {
     id: number
     title: string
@@ -8,47 +11,69 @@ interface MovieProps {
     overview: string
     release_date: string
 }
-const baseImgUrl = "https://image.tmdb.org/t/p/w500/";
+interface PropTypes {
+    index: number
+    movie: MovieProps,
+    addFavourite: Function,
+    removeFavourite: Function,
+    isFavourite: Function
+    isLoading: Boolean
+};
 
-function MovieCard({ movie }: { movie: MovieProps, addtoFav: Function }) {
+export default function MovieCard({ index, movie, addFavourite, removeFavourite, isFavourite, isLoading }: PropTypes) {
+    const [toggleModal, setToggleModal] = useState(false);
+
     return (
-        <div className="card mb-3 hover-card cursor-pointer" style={{ maxWidth: '540px' }}>
-            <div className="row g-0">
-                <div className="col-md-4">
-                    <img src={baseImgUrl + movie.poster_path} className="img-fluid rounded-start" alt="..." />
-                </div>
-                <div className="col-md-8">
+        <>
+            <Card
+                onClick={() => setToggleModal(true)}
+                className="mb-4"
+                hoverable
+                style={{ maxWidth: '400px' }}
+                cover={renderMovieImage()}
+            >
+                <div className="bg-white">
                     <div className="card-body">
                         <div className="d-flex" style={{ justifyContent: 'space-between' }}>
                             <h5 className="card-title text-primary"><b>{movie.title}</b></h5>
-                            {renderIcons()}
+                            {renderStarIcons()}
                         </div>
                         <p className="card-text">{textOverflow(movie.overview)}</p>
                         <p className="card-text"><small className="text-muted">Release Date: {movie.release_date}</small></p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Card>
+            {/* Modal */}
+            {/* just to replicate the movie director because director doesnot exist in this api */}
+            {toggleModal &&
+                <Modal directorID={index + 1} isVisible={toggleModal} closeHandler={() => setToggleModal(false)} />
+            }
+        </>
     )
 
-    function renderIcons() {
-        if (Favourites.favouriteList.includes(movie.id)) {
+    function renderStarIcons() {
+        if (isLoading) {
             return (
-                <i className="fa fa-star" onClick={(e) => {
-                    e.preventDefault();
-                    Favourites.remove(movie.id)
-                }}></i>
+                <div><i className="fas fa-circle-notch fa-spin fa-lg"></i></div>
             )
         }
-        else if (!Favourites.favouriteList.includes(movie.id)) {
+        if (isFavourite(movie.id)) {
             return (
-                <i className="far fa-star" onClick={(e) => {
-                    e.preventDefault();
-                    Favourites.add(movie.id)
-                }}></i>
+                <div><i className="fa fa-star fa-lg" onClick={e => removeFavourite(e, movie.id, index)}></i></div>
+            )
+        }
+        else if (!isFavourite(movie.id)) {
+            return (
+                <div><i className="far fa-star fa-lg" onClick={e => addFavourite(e, movie.id, index)}></i></div>
             )
         }
     }
-}
 
-export default React.memo(MovieCard);
+    function renderMovieImage() {
+        return (
+            <div style={{ height: "250px" }}>
+                <img alt="movie-card" className="img-cover" src={baseImgUrl + movie.poster_path} />
+            </div>
+        )
+    }
+}

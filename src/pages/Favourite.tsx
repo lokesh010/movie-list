@@ -1,13 +1,16 @@
 import React from 'react'
 import MainLayout from 'layouts/main'
 import HomeContainer from 'containers/Home'
-import 'assets/css/style.css';
+import { Helmet } from "react-helmet";
 
 function Favourite() {
     return (
-        <MainLayout title="Favourite">
-            <HomeContainer />
-        </MainLayout>
+        <>
+            <Helmet title={`React | Favourite`} />
+            <MainLayout>
+                <HomeContainer />
+            </MainLayout>
+        </>
     )
 }
 
