@@ -44,6 +44,7 @@ if (isProd) {
   };
 } else {
   config.devServer = {
+    historyApiFallback: true,
     port: 8080,
     open: true,
     hot: true,

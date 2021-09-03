@@ -6,7 +6,7 @@ function Footer() {
             <div className="container">
                 <div className="me-md-auto text-center text-md-start">
                     <div className="copyright">
-                        © Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
+                        © Copyright All Rights Reserved
                     </div>
                     <div className="credits">
                         Designed by <a href="https://lokesh.com" target="_blank">Lokesh</a>

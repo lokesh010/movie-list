@@ -1,14 +1,14 @@
 import React from 'react'
 import MainLayout from 'layouts/main'
-import HomeContainer from 'containers/Home'
+import FavouriteContainer from 'containers/Favourite'
 import { Helmet } from "react-helmet";
 
 function Favourite() {
     return (
         <>
-            <Helmet title={`React | Favourite`} />
+            <Helmet title={`Movies | Favourite`} />
             <MainLayout>
-                <HomeContainer />
+                <FavouriteContainer />
             </MainLayout>
         </>
     )

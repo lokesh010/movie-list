@@ -44,7 +44,7 @@ function ModalComp({ directorID, isVisible, okHandler, closeHandler }: PropTypes
     }, [])
 
     return (
-        <Modal title={director.name || "( Director )"} visible={isVisible} onOk={okHandler || undefined} onCancel={closeHandler}>
+        <Modal title={director.name || "( Director )"} visible={isVisible} onOk={closeHandler} onCancel={closeHandler}>
             {renderDirectorDetails()}
         </Modal>
     )

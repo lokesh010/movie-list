@@ -1,40 +1,108 @@
 import React, { useState } from 'react'
 import { textOverflow } from 'helpers';
+import { Card } from 'antd';
+import Modal from 'components/DirectorModal'
 
+const baseImgUrl = "https://image.tmdb.org/t/p/w500/";
 interface MovieProps {
     id: number
     title: string
     poster_path: string
     overview: string
     release_date: string
+    vote_count: number
+    original_language: string
+
 }
-const baseImgUrl = "https://image.tmdb.org/t/p/w500/";
+interface PropTypes {
+    index: number
+    movie: MovieProps,
+    removeFavourite: Function,
+    isFavourite: Function
+    isLoading: Boolean
+};
 
-function MovieCard({ movie, removeFav }: { movie: MovieProps, removeFav: Function }) {
-
-    const addFavHandler = (fid: number) => {
-        removeFav(fid)
-    }
+export default function MovieCard({ index, movie, removeFavourite, isFavourite, isLoading }: PropTypes) {
+    const [toggleModal, setToggleModal] = useState(false);
+    const [toggleAccordion, setToggleAccordion] = useState(false);
+    const toggleAccordionHandler = () => setToggleAccordion(!toggleAccordion);
 
     return (
-        <div className="card mb-3 hover-card cursor-pointer" style={{ maxWidth: '540px' }}>
-            <div className="row g-0">
-                <div className="col-md-4">
-                    <img src={baseImgUrl + movie.poster_path} className="img-fluid rounded-start" alt="..." />
-                </div>
-                <div className="col-md-8">
-                    <div className="card-body">
-                        <div className="d-flex" style={{ justifyContent: 'space-between' }}>
-                            <h5 className="card-title text-primary"><b>{movie.title}</b></h5>
-                            <i className="fa fa-star" onClick={() => { }}></i>
+        <>
+            <div className="d-flex">
+                <Card
+                    onClick={toggleAccordionHandler}
+                    className="mb-4 accordion-trigger"
+                    hoverable
+                    style={{ width: '400px', maxHeight: "500px" }}
+                    cover={renderMovieImage()}
+                >
+                    <div className="bg-white">
+                        <div className="card-body">
+                            <div className="d-flex" style={{ justifyContent: 'space-between' }}>
+                                <h5 className="card-title text-primary" onClick={e => {
+                                    e.stopPropagation();
+                                    setToggleModal(true)
+                                }}><b>{movie.title}</b></h5>
+                                {renderStarIcons()}
+                            </div>
+                            <p className="card-text">{textOverflow(movie.overview)}</p>
+                            <p className="card-text"><small className="text-muted">Release Date: {movie.release_date}</small></p>
                         </div>
-                        <p className="card-text">{textOverflow(movie.overview)}</p>
-                        <p className="card-text"><small className="text-muted">Release Date: {movie.release_date}</small></p>
+                    </div>
+                </Card>
+                {renderAccordion()}
+            </div>
+
+            {/* Modal */}
+            {/* passed index just to replicate the movie director because director doesnot exist in this api */}
+            {toggleModal &&
+                <Modal directorID={index + 1} isVisible={toggleModal} closeHandler={() => setToggleModal(false)} />
+            }
+        </>
+    )
+
+    function renderStarIcons() {
+        if (isLoading) {
+            return (
+                <div><i className="fas fa-circle-notch fa-spin fa-lg"></i></div>
+            )
+        }
+        else {
+            return (
+                <div><i className="fa fa-star fa-lg" onClick={e => removeFavourite(e, movie.id, index)}></i></div>
+            )
+        }
+    }
+
+    function renderMovieImage() {
+        return (
+            <div style={{ height: "250px" }}>
+                <img alt="movie-card" className="img-cover" src={baseImgUrl + movie.poster_path} />
+            </div>
+        )
+    }
+
+    function renderAccordion() {
+        return (
+            <Card
+                className={`mb-4 accordion-child-${toggleAccordion ? "show" : "hide"} roll-out`}
+                hoverable
+                style={{ width: '600px', marginLeft: '1em', maxHeight: "500px" }}
+                cover={renderMovieImage()}
+            >
+                <div className="bg-white">
+                    <div className="card-body">
+                        <h5 className="card-title text-primary"><b>{movie.title}</b></h5>
+                        <p className="card-text">{textOverflow(movie.overview, 350)}</p>
+                        <div className="d-flex mt-2" style={{ justifyContent: 'space-between' }}>
+                            <span className="mr-auto">Language:{" "}<b>{movie.original_language}</b></span>
+                            <p className="card-text"><small className="text-muted">Release Date: <b>{movie.release_date}</b></small></p>
+                            <i className="fa fa-thumbs-up text-primary fa-md">{" "}{movie.vote_count}</i>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    )
+            </Card>
+        )
+    }
 }
-
-export default React.memo(MovieCard);

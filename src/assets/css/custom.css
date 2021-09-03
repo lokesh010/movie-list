@@ -1,6 +1,7 @@
 .page-container{
+    animation: .4s dropZone;
     margin-bottom: auto;
-    min-height: 90vh;
+    min-height: 100vh;
 }
 .wrapper-container{
     background-color: rgb(233, 233, 233);
@@ -15,7 +16,6 @@
     cursor: pointer;
 }
 
-
 .fa-star, .fa-circle-notch{
     color: orange;
 }
@@ -24,4 +24,42 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+/* accordion */
+.accordion-trigger{
+    z-index: 10;
+}
+
+.accordion-child-hide {
+    display: none;
+    animation: .4s roll-out;
+}
+
+.accordion-child-show {
+    z-index: 0;
+    display: block;
+}
+
+.roll-out {
+    animation: .4s rollout;
+}
+
+
+@keyframes rollout {
+    0% {
+      transform: translateX(-250px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes dropZone {
+    0% {
+      transform: translateY(-25px);
+    }
+    100% {
+      transform: translateY(0);
+    }
 }
