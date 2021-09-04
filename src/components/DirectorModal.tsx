@@ -22,7 +22,7 @@ const initialState = {
     }
 }
 
-function ModalComp({ directorID, isVisible, okHandler, closeHandler }: PropTypes) {
+function ModalComp({ directorID, isVisible, closeHandler }: PropTypes) {
     const [loading, setLoading] = useState(false);
     const [director, setDirector] = useState(initialState);
 

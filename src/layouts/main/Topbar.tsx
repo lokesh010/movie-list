@@ -14,7 +14,7 @@ function Topbar() {
                         <Link to="/favourite" className={`${location.pathname === '/favourite' && 'active'}`}>Favourite</Link>
                     </ul>
                     <i className="bi bi-list mobile-nav-toggle" />
-                </nav>{/* .navbar */}
+                </nav>
             </div>
         </header>
     )
