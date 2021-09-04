@@ -26,3 +26,5 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm run build --if-present
+    - run: pm2 delete React-Movies-8080
+    - run: pm2 serve --spa --name React-Movies-8080 --port 8080 dist
