@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 function HomePage() {
     return (
         <>
-            <Helmet title={`Movies | Homie`} />
+            <Helmet title={`Movies | Home`} />
             <MainLayout>
                 <HomeContainer />
             </MainLayout>
