@@ -1,3 +1,7 @@
+:root {
+    --primary: #F63854;
+}
+
 .page-container{
     animation: .4s dropZone;
     margin-bottom: auto;
@@ -48,10 +52,10 @@
 
 @keyframes rollout {
     0% {
-      transform: translateX(-250px);
+      transform: translateY(-250px);
     }
     100% {
-      transform: translateX(0);
+      transform: translateY(0);
     }
 }
 

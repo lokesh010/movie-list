@@ -27,6 +27,21 @@ const config = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       },
+      {
+        test: /.(png|jpg|woff|woff2|eot|ttf|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: 'img',
+              outputPath: 'img',
+              useRelativePath: true,
+              esModule: false,
+            }
+          },
+        ]
+      }
     ],
   },
   plugins: [
