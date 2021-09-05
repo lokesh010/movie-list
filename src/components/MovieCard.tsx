@@ -30,12 +30,12 @@ export default function MovieCard({ index, movie, addFavourite, removeFavourite,
 
     return (
         <>
-            <div className="d-flex">
+            <div>
                 <Card
                     onClick={toggleAccordionHandler}
                     className="mb-4 accordion-trigger"
                     hoverable
-                    style={{ width: '400px', maxHeight: "500px" }}
+                    style={{ maxWidth: '400px', maxHeight: "500px" }}
                     cover={renderMovieImage()}
                 >
                     <div className="bg-white">
@@ -47,7 +47,7 @@ export default function MovieCard({ index, movie, addFavourite, removeFavourite,
                                 }}><b>{movie.title}</b></h5>
                                 {renderStarIcons()}
                             </div>
-                            <p className="card-text">{textOverflow(movie.overview)}</p>
+                            <p className="card-text">{textOverflow(movie.overview, 150)}</p>
                             <p className="card-text"><small className="text-muted">Release Date: {movie.release_date}</small></p>
                         </div>
                     </div>
@@ -94,13 +94,13 @@ export default function MovieCard({ index, movie, addFavourite, removeFavourite,
             <Card
                 className={`mb-4 accordion-child-${toggleAccordion ? "show" : "hide"} roll-out`}
                 hoverable
-                style={{ width: '600px', marginLeft: '1em', maxHeight: "500px" }}
+                style={{ maxWidth: '400px' }}
                 cover={renderMovieImage()}
             >
                 <div className="bg-white">
                     <div className="card-body">
                         <h5 className="card-title text-primary"><b>{movie.title}</b></h5>
-                        <p className="card-text">{textOverflow(movie.overview, 350)}</p>
+                        <p className="card-text">{movie.overview}</p>
                         <div className="d-flex mt-2" style={{ justifyContent: 'space-between' }}>
                             <span className="mr-auto">Language:{" "}<b>{movie.original_language}</b></span>
                             <p className="card-text"><small className="text-muted">Release Date: <b>{movie.release_date}</b></small></p>

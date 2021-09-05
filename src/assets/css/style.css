@@ -44,7 +44,7 @@ body {
   }
   
   #header .logo a {
-    color: #16507b;
+    color: var(--primary);
   }
   
   #header .logo img {
@@ -96,8 +96,8 @@ body {
     margin-left: 5px;
   }
   
-  .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-    color: #2487ce;
+  .navbar a:hover, .navbar .active-nav, .navbar .active-nav:focus, .navbar li:hover > a {
+    color: var(--primary);
   }
   
   .navbar .getstarted {
@@ -274,4 +274,46 @@ body {
   
   .navbar-mobile .dropdown > .dropdown-active {
     display: block;
+  }
+
+  /* Hero area */
+  #hero-area {
+    background: white;
+    background-image: url('../images/hero-area.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 550px;
+    position: relative;
+    overflow: hidden;
+    padding: 180px 0 80px;
+  }
+  
+  #hero-area .contents .head-title {
+    color: #222222;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 60px;
+    margin-bottom: 10px;
+  }
+  
+  #hero-area .contents .header-button {
+    margin-top: 20px;
+    color: #222222;
+  }
+  
+  #hero-area .contents .header-button .btn {
+    margin-right: 10px;
+  }
+
+  .btn-common {
+    color: white;
+    background-color: var(--primary);
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+
+  .footer {
+    background :var(--primary) !important;
   }

@@ -89,7 +89,7 @@ export default function Home() {
     else if (!movieList.length) return <Empty description={"No Movies"} />;
     else {
       return (
-        <>
+        <div>
           {movieList.map((movie: any, index: number) =>
             <MovieCard
               key={movie.id}
@@ -101,7 +101,7 @@ export default function Home() {
               isLoading={loader.favourite[index]}
             />
           )}
-        </>
+        </div>
       )
     }
   }
