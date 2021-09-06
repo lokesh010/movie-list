@@ -3,9 +3,6 @@ import routes from 'routes'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'antd/dist/antd.css';
 import 'assets/css/custom.css';
-import Error404 from 'pages/Error404';
-import Home from 'pages/Home';
-import Favourite from 'pages/Favourite';
 interface RouteTypes {
   path: string,
   page: FC,
