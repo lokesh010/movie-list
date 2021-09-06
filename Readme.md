@@ -22,6 +22,10 @@ Install dependencies
 
 `npm install`
 
+Test Project
+
+`npm run test`
+
 Start Server
 
 `npm run dev`
