@@ -41,7 +41,7 @@ export default function MovieCard({ index, movie, addFavourite, removeFavourite,
                     <div className="bg-white">
                         <div className="card-body">
                             <div className="d-flex" style={{ justifyContent: 'space-between' }}>
-                                <h5 className="card-title text-primary" onClick={e => {
+                                <h5 data-testid="click_title" className="card-title text-primary" onClick={e => {
                                     e.stopPropagation();
                                     setToggleModal(true)
                                 }}><b>{movie.title}</b></h5>
@@ -58,7 +58,7 @@ export default function MovieCard({ index, movie, addFavourite, removeFavourite,
             {/* Modal */}
             {/* passed index just to replicate the movie director because director doesnot exist in this api */}
             {toggleModal &&
-                <Modal directorID={index + 1} isVisible={toggleModal} closeHandler={() => setToggleModal(false)} />
+                <Modal data-testid="director_id" directorID={index + 1} isVisible={toggleModal} closeHandler={() => setToggleModal(false)} />
             }
         </>
     )
@@ -99,12 +99,12 @@ export default function MovieCard({ index, movie, addFavourite, removeFavourite,
             >
                 <div className="bg-white">
                     <div className="card-body">
-                        <h5 className="card-title text-primary"><b>{movie.title}</b></h5>
-                        <p className="card-text">{movie.overview}</p>
+                        <h5 className="card-title text-primary title" data-testid="title"><b>{movie.title}</b></h5>
+                        <p className="card-text" data-testid="overview">{movie.overview}</p>
                         <div className="d-flex mt-2" style={{ justifyContent: 'space-between' }}>
-                            <span className="mr-auto">Language:{" "}<b>{movie.original_language}</b></span>
-                            <p className="card-text"><small className="text-muted">Release Date: <b>{movie.release_date}</b></small></p>
-                            <i className="fa fa-thumbs-up text-primary fa-md">{" "}{movie.vote_count}</i>
+                            <span className="mr-auto" data-testid="original_language">Language:{" "}<b>{movie.original_language}</b></span>
+                            <p className="card-text"><small className="text-muted" data-testid="release_date">Release Date: <b>{movie.release_date}</b></small></p>
+                            <i className="fa fa-thumbs-up text-primary fa-md" data-testid="vote_count">{" "}{movie.vote_count}</i>
                         </div>
                     </div>
                 </div>

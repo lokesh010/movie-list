@@ -22,14 +22,14 @@ interface PropTypes {
     isLoading: Boolean
 };
 
-export default function MovieCard({ index, movie, removeFavourite, isFavourite, isLoading }: PropTypes) {
+export default function MovieCard({ index, movie, removeFavourite, isLoading }: PropTypes) {
     const [toggleModal, setToggleModal] = useState(false);
     const [toggleAccordion, setToggleAccordion] = useState(false);
     const toggleAccordionHandler = () => setToggleAccordion(!toggleAccordion);
 
     return (
         <>
-            <div className="d-flex">
+            <div className="d-">
                 <Card
                     onClick={toggleAccordionHandler}
                     className="mb-4 accordion-trigger"
@@ -40,7 +40,7 @@ export default function MovieCard({ index, movie, removeFavourite, isFavourite, 
                     <div className="bg-white">
                         <div className="card-body">
                             <div className="d-flex" style={{ justifyContent: 'space-between' }}>
-                                <h5 className="card-title text-primary" onClick={e => {
+                                <h5 className="card-title text-primary" data-testid="click_title" onClick={e => {
                                     e.stopPropagation();
                                     setToggleModal(true)
                                 }}><b>{movie.title}</b></h5>
@@ -57,7 +57,7 @@ export default function MovieCard({ index, movie, removeFavourite, isFavourite, 
             {/* Modal */}
             {/* passed index just to replicate the movie director because director doesnot exist in this api */}
             {toggleModal &&
-                <Modal directorID={index + 1} isVisible={toggleModal} closeHandler={() => setToggleModal(false)} />
+                <Modal data-testid="director_id" directorID={index + 1} isVisible={toggleModal} closeHandler={() => setToggleModal(false)} />
             }
         </>
     )
@@ -88,17 +88,17 @@ export default function MovieCard({ index, movie, removeFavourite, isFavourite, 
             <Card
                 className={`mb-4 accordion-child-${toggleAccordion ? "show" : "hide"} roll-out`}
                 hoverable
-                style={{ width: '600px', marginLeft: '1em', maxHeight: "500px" }}
+                style={{ maxWidth: '400px' }}
                 cover={renderMovieImage()}
             >
                 <div className="bg-white">
                     <div className="card-body">
-                        <h5 className="card-title text-primary"><b>{movie.title}</b></h5>
-                        <p className="card-text">{textOverflow(movie.overview, 350)}</p>
+                        <h5 className="card-title text-primary" data-testid="title"><b>{movie.title}</b></h5>
+                        <p className="card-text" data-testid="overview">{textOverflow(movie.overview, 350)}</p>
                         <div className="d-flex mt-2" style={{ justifyContent: 'space-between' }}>
-                            <span className="mr-auto">Language:{" "}<b>{movie.original_language}</b></span>
-                            <p className="card-text"><small className="text-muted">Release Date: <b>{movie.release_date}</b></small></p>
-                            <i className="fa fa-thumbs-up text-primary fa-md">{" "}{movie.vote_count}</i>
+                            <span className="mr-auto" data-testid="original_language">Language:{" "}<b>{movie.original_language}</b></span>
+                            <p className="card-text"><small className="text-muted" data-testid="release_date">Release Date: <b>{movie.release_date}</b></small></p>
+                            <i className="fa fa-thumbs-up text-primary fa-md" data-testid="vote_count">{" "}{movie.vote_count}</i>
                         </div>
                     </div>
                 </div>
