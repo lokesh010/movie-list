@@ -37,5 +37,3 @@ A push or a pull request to the master branch initiates the action runner to tri
 ---
 
 if you face any problem then please contact with me through phone or email.
-
-This code was written for the demonstration purpose for [Outside Tech](https://outside.tech)
